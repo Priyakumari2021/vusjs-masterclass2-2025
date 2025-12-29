@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  <h1>Welcome to pulse!</h1>
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
