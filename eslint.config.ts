@@ -9,10 +9,21 @@ import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
 export default defineConfigWithVueTs(
+  // Base rules
+  {
+    files: ['**/*.{vue.ts, tsx, mts}'],
+  },
+  // Disables multi-word rule ONLY for Nuxt pages
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{vue,ts,mts,tsx}'],
+    files: ['src/pages/**/*.{vue,ts,mts,tsx}'],
+    rules:  {
+      "vue/multi-word-component-names": ["error", {
+      "ignores": ["index", "[id]"]
+      }]
+    },
   },
+  
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
@@ -20,4 +31,6 @@ export default defineConfigWithVueTs(
   vueTsConfigs.recommended,
 
   skipFormatting,
+
+  
 )
